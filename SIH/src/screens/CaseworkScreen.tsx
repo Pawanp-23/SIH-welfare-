@@ -103,7 +103,7 @@ export function CaseworkScreen() {
 
           <AnimatePresence mode="wait">
             {active ? (
-              <motion.div key={active.id} variants={screen} initial="hidden" animate="show" exit="exit">
+              <motion.div key={active.id} variants={screen} initial="hidden" animate="show" exit="exit" className="min-w-0">
                 <CaseDetail kase={active} onChanged={cases.refetch} />
               </motion.div>
             ) : null}
@@ -214,7 +214,7 @@ function CaseDetail({ kase, onChanged }: { kase: WelfareCase; onChanged: () => v
         />
 
         <div className="grid gap-5 px-5 py-5 sm:grid-cols-[200px_minmax(0,1fr)]">
-          <div className="flex justify-center">
+          <div className="flex min-w-0 justify-center">
             {d ? (
               <RiskDial
                 value={d.assessment.wri}
@@ -228,7 +228,7 @@ function CaseDetail({ kase, onChanged }: { kase: WelfareCase; onChanged: () => v
             )}
           </div>
 
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3">
             <Tabs
               items={[
                 { id: 'why' as const, label: 'Why flagged' },

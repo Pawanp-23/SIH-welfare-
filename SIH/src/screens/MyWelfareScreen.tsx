@@ -116,7 +116,7 @@ export function MyWelfareScreen({ user, onGoToCheckin }: { user: UserProfile; on
       />
 
       <div className="grid gap-5 lg:grid-cols-[320px_minmax(0,1fr)]">
-        <motion.div variants={staggerItem} className="space-y-5">
+        <motion.div variants={staggerItem} className="min-w-0 space-y-5">
           <Panel className="flex flex-col items-center px-5 py-7">
             <RiskDial value={detail.wri} band={detail.band} interval={detail.interval} forecast={detail.forecast7d} />
             <div className="mt-5 flex flex-col items-center gap-2">
@@ -152,7 +152,7 @@ export function MyWelfareScreen({ user, onGoToCheckin }: { user: UserProfile; on
           <CoverageNote coverage={detail.coverage} imputed={detail.imputed} />
         </motion.div>
 
-        <motion.div variants={staggerItem} className="space-y-5">
+        <motion.div variants={staggerItem} className="min-w-0 space-y-5">
           <Panel>
             <PanelHeader
               eyebrow="History"

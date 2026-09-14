@@ -102,7 +102,7 @@ export function CheckinScreen({
       />
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
-        <motion.div variants={stagger(0.05, 0.06)} initial="hidden" animate="show" className="space-y-5">
+        <motion.div variants={stagger(0.05, 0.06)} initial="hidden" animate="show" className="min-w-0 space-y-5">
           <motion.div variants={staggerItem}>
             <Panel>
               <PanelHeader eyebrow="01 · Rest" title="How much did you sleep?" />
@@ -317,7 +317,7 @@ function CheckinResult({
           </Panel>
         </motion.div>
 
-        <motion.div variants={staggerItem} className="space-y-5">
+        <motion.div variants={staggerItem} className="min-w-0 space-y-5">
           <Panel>
             <PanelHeader
               eyebrow="Explanation"

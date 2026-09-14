@@ -178,7 +178,7 @@ export function AuditScreen() {
       </motion.div>
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
-        <motion.div variants={staggerItem}>
+        <motion.div variants={staggerItem} className="min-w-0">
           <Panel>
             <PanelHeader
               eyebrow="Access trail"
@@ -241,7 +241,7 @@ export function AuditScreen() {
           </Panel>
         </motion.div>
 
-        <motion.div variants={staggerItem}>
+        <motion.div variants={staggerItem} className="min-w-0">
           <Panel>
             <PanelHeader
               eyebrow="By design"

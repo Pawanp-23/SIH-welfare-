@@ -119,7 +119,7 @@ export function ForceScreen({ onOpenUnits }: { onOpenUnits: () => void }) {
       </motion.div>
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="space-y-5">
+        <div className="min-w-0 space-y-5">
           <motion.div variants={staggerItem}>
             <Panel>
               <PanelHeader
@@ -210,7 +210,7 @@ export function ForceScreen({ onOpenUnits }: { onOpenUnits: () => void }) {
         </div>
 
         {/* Live column */}
-        <motion.div variants={staggerItem} className="space-y-5">
+        <motion.div variants={staggerItem} className="min-w-0 space-y-5">
           <Panel>
             <PanelHeader
               eyebrow="Live"

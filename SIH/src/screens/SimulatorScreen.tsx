@@ -93,7 +93,7 @@ export function SimulatorScreen({ user }: { user: UserProfile }) {
 
       <div className="grid gap-5 lg:grid-cols-[340px_minmax(0,1fr)]">
         {/* Controls */}
-        <motion.div variants={staggerItem} className="space-y-5">
+        <motion.div variants={staggerItem} className="min-w-0 space-y-5">
           <Panel>
             <PanelHeader eyebrow="Subject" title="Who are we planning for?" />
             <div className="px-5 py-4">
@@ -198,7 +198,7 @@ export function SimulatorScreen({ user }: { user: UserProfile }) {
         </motion.div>
 
         {/* Results */}
-        <motion.div variants={staggerItem} className="space-y-5">
+        <motion.div variants={staggerItem} className="min-w-0 space-y-5">
           {err ? <ErrorNote onRetry={run}>{err}</ErrorNote> : null}
 
           {!sim && busy ? <Skeleton className="h-[220px]" /> : null}
