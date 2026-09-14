@@ -1,0 +1,368 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   SAHARA design language — "Field Manual"
+   --------------------------------------------------------------------------
+   The visual reference is a printed operational document, not a SaaS
+   dashboard: a warm paper ground, ink-black type, hairline rules instead of
+   drop shadows, and exactly three signal colours that mean exactly one thing
+   each. Data is set in monospace so columns of numbers line up; headlines are
+   set in a high-contrast serif so the page has a voice.
+
+   Every colour below is a token. Nothing in a component should contain a hex
+   value — if a new colour is needed, it belongs here with a name that says
+   what it is for.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* --- Ground ----------------------------------------------------------- */
+  --paper:            #EFEAE0;
+  --paper-raised:     #F8F5EF;
+  --paper-sunken:     #E5DED0;
+  --paper-inset:      #EAE4D8;
+
+  /* --- Ink -------------------------------------------------------------- */
+  --ink:              #1A1C19;
+  --ink-strong:       #000000;
+  --ink-muted:        #6A6658;
+  --ink-faint:        #9B9583;
+
+  /* --- Structure -------------------------------------------------------- */
+  --rule:             #DCD5C4;
+  --rule-strong:      #C2B9A3;
+  --rule-hairline:    #E6E0D2;
+
+  /* --- Signals: one meaning each, never decorative ---------------------- */
+  --signal-routine:   #2F6F4E;
+  --signal-routine-bg:#E2EDE4;
+  --signal-watch:     #9C6E14;
+  --signal-watch-bg:  #F2E9D2;
+  --signal-review:    #A63A2E;
+  --signal-review-bg: #F4E0DA;
+
+  /* --- Action ----------------------------------------------------------- */
+  --accent:           #1C5B4C;
+  --accent-hover:     #164A3E;
+  --accent-soft:      #DEEBE5;
+  --accent-ink:       #FBF9F5;
+
+  /* --- Data visualisation ---------------------------------------------- */
+  /* Categorical series. Fixed order, never cycled — an entity keeps its hue
+     when a filter changes the series count. Validated against the
+     #F8F5EF chart surface: lightness band, chroma floor, adjacent-pair CVD
+     separation (worst ΔE 9.6 protan), normal-vision floor and 3:1 contrast
+     all pass. Do not nudge these by eye; re-run the validator. */
+  --viz-1: #00866C;
+  --viz-2: #B8790A;
+  --viz-3: #2F63C7;
+  --viz-4: #C13A28;
+  --viz-5: #8E3FA0;
+  --viz-grid: #DCD5C4;
+  --viz-axis: #9B9583;
+  /* The forecast series is deliberately the blue slot, never a lighter tint of
+     the actuals — a tint reads as "the same thing, less certain" when it is in
+     fact a different quantity. */
+  --viz-forecast: #2F63C7;
+
+  /* --- Elevation: warm, shallow, and used sparingly --------------------- */
+  --elev-1: 0 1px 2px rgba(38, 31, 18, 0.05);
+  --elev-2: 0 2px 6px rgba(38, 31, 18, 0.07), 0 1px 2px rgba(38, 31, 18, 0.05);
+  --elev-3: 0 10px 32px -8px rgba(38, 31, 18, 0.18), 0 2px 6px rgba(38, 31, 18, 0.06);
+  --elev-inset: inset 0 1px 2px rgba(38, 31, 18, 0.06);
+  /* A card that sits *on* the page rather than being drawn on it: a hairline
+     of light along the top edge, a tight contact shadow, and a soft ambient
+     one further out. Depth, without the plastic look of neumorphism. */
+  --elev-surface:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 1px 1.5px rgba(38, 31, 18, 0.06),
+    0 8px 22px -14px rgba(38, 31, 18, 0.22);
+  --elev-surface-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 2px 4px rgba(38, 31, 18, 0.06),
+    0 16px 34px -16px rgba(38, 31, 18, 0.28);
+  --surface-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 38%);
+
+  /* --- Radii: small. A document has corners, not pills. ----------------- */
+  --r-xs: 2px;
+  --r-sm: 4px;
+  --r-md: 7px;
+  --r-lg: 12px;
+  --r-xl: 18px;
+
+  /* --- Type ------------------------------------------------------------- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Instrument Serif", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 520ms;
+}
+
+:root[data-theme="dark"],
+.dark {
+  color-scheme: dark;
+
+  --paper:            #13151A;
+  --paper-raised:     #1A1D23;
+  --paper-sunken:     #0E1014;
+  --paper-inset:      #171A20;
+
+  --ink:              #E9E5DB;
+  --ink-strong:       #FFFFFF;
+  --ink-muted:        #98948A;
+  --ink-faint:        #6B6860;
+
+  --rule:             #282C33;
+  --rule-strong:      #3A3F47;
+  --rule-hairline:    #21252B;
+
+  --signal-routine:   #58AE84;
+  --signal-routine-bg:#16281F;
+  --signal-watch:     #D6A952;
+  --signal-watch-bg:  #2B2315;
+  --signal-review:    #DE7566;
+  --signal-review-bg: #2F1B18;
+
+  --accent:           #57BCA0;
+  --accent-hover:     #6FCCB2;
+  --accent-soft:      #17302A;
+  --accent-ink:       #0C1512;
+
+  /* Dark steps are chosen from the same ramps and re-validated against the
+     #1A1D23 surface — not an automatic lightening of the light values. */
+  --viz-1: #1E9B81;
+  --viz-2: #B8841F;
+  --viz-3: #5B86CC;
+  --viz-4: #C85B47;
+  --viz-5: #A46BBA;
+  --viz-grid: #282C33;
+  --viz-axis: #6B6860;
+  --viz-forecast: #5B86CC;
+
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev-2: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --elev-3: 0 14px 40px -10px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --elev-inset: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+  --elev-surface:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 1px 1.5px rgba(0, 0, 0, 0.45),
+    0 10px 26px -14px rgba(0, 0, 0, 0.75);
+  --elev-surface-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 2px 4px rgba(0, 0, 0, 0.45),
+    0 18px 40px -16px rgba(0, 0, 0, 0.85);
+  --surface-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 40%);
+}
+
+/* Expose the tokens to Tailwind's utility generator. */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-sunken: var(--paper-sunken);
+  --color-paper-inset: var(--paper-inset);
+
+  --color-ink: var(--ink);
+  --color-ink-strong: var(--ink-strong);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-rule-hairline: var(--rule-hairline);
+
+  --color-routine: var(--signal-routine);
+  --color-routine-bg: var(--signal-routine-bg);
+  --color-watch: var(--signal-watch);
+  --color-watch-bg: var(--signal-watch-bg);
+  --color-review: var(--signal-review);
+  --color-review-bg: var(--signal-review-bg);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+
+  --color-viz-1: var(--viz-1);
+  --color-viz-2: var(--viz-2);
+  --color-viz-3: var(--viz-3);
+  --color-viz-4: var(--viz-4);
+  --color-viz-5: var(--viz-5);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+
+  --radius-xs: var(--r-xs);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+
+  --shadow-e1: var(--elev-1);
+  --shadow-e2: var(--elev-2);
+  --shadow-e3: var(--elev-3);
+  --shadow-surface: var(--elev-surface);
+  --shadow-surface-hover: var(--elev-surface-hover);
+}
+
+@layer base {
+  * {
+    border-color: var(--rule);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv05" 1, "ss01" 1;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    color: var(--ink-strong);
+  }
+
+  /* Tabular figures everywhere a number might change, so the layout does not
+     jitter when a value ticks from 9 to 10. */
+  .tnum, table, td, th {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--ink-strong);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--r-xs);
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--rule-strong);
+    border-radius: 99px;
+    border: 3px solid var(--paper);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+}
+
+@layer components {
+  /* The small uppercase label that titles every panel. Used constantly, so it
+     earns a class rather than eight utilities repeated everywhere. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .rule-t { border-top: 1px solid var(--rule-hairline); }
+  .rule-b { border-bottom: 1px solid var(--rule-hairline); }
+
+  /* Faint ledger ruling — gives large empty panels the texture of paper
+     rather than the flatness of a blank div. */
+  .ledger {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 27px,
+      var(--rule-hairline) 27px,
+      var(--rule-hairline) 28px
+    );
+  }
+
+  /* Raised surface: the sheen is painted as a background layer so it never
+     interferes with the panel's own content or borders. */
+  .surface {
+    background-image: var(--surface-sheen);
+    background-repeat: no-repeat;
+    box-shadow: var(--elev-surface);
+  }
+
+  /* Perspective stage for the few elements allowed to tilt. Children set
+     their own rotate; this only provides the depth of field. */
+  .stage-3d {
+    perspective: 1400px;
+  }
+  .tilt-3d {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  /* Keyboard users land here first. Invisible until focused. */
+  .skip-link {
+    position: absolute;
+    left: 12px;
+    top: -100px;
+    z-index: 100;
+    padding: 8px 14px;
+    border-radius: var(--r-sm);
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: var(--elev-3);
+  }
+  .skip-link:focus-visible {
+    top: 12px;
+  }
+
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  }
+}
+
+/* Honour the OS preference for people who get motion sick — the interface
+   still works, it simply stops moving. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Recharts overrides so charts inherit the design language instead of
+   shipping their default grey-on-white look. */
+.recharts-cartesian-axis-tick text {
+  fill: var(--viz-axis);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+}
+.recharts-cartesian-grid line {
+  stroke: var(--viz-grid);
+}
+.recharts-tooltip-wrapper:focus { outline: none; }

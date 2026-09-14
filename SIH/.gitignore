@@ -1,0 +1,21 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Runtime database — recreated and reseeded on first boot.
+.data/
+
+# Generated cohort: 26,400 rows, ~4 MB. Reproduce with `npm run ml:data`
+# (the seed is fixed, so it regenerates byte-identically).
+ml/data/
+
+# NOT ignored, on purpose:
+#   server/models/sahara-model-v2.json   the trained trees the app actually runs
+#   ml/artifacts/                        metrics + the fixture ml:verify checks against
+# Those two are the build outputs that make the claims checkable, so they are
+# committed rather than regenerated.

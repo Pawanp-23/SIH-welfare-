@@ -1,0 +1,342 @@
+{
+  "regression": {
+    "wri": {
+      "mae": 3.866,
+      "rmse": 4.852,
+      "r2": 0.9521
+    },
+    "wri_7d_ahead": {
+      "mae": 14.023,
+      "rmse": 17.306,
+      "r2": 0.4493,
+      "persistence_baseline_mae": 15.999
+    },
+    "baselines": {
+      "linear_regression_mae": 4.229,
+      "linear_regression_r2": 0.9407,
+      "self_report_only_mae": 10.834,
+      "self_report_only_r2": 0.6239
+    }
+  },
+  "band_accuracy": 0.903,
+  "band_confusion": {
+    "labels": [
+      "routine",
+      "watch",
+      "review"
+    ],
+    "matrix": [
+      [
+        2954,
+        193,
+        0
+      ],
+      [
+        206,
+        1744,
+        79
+      ],
+      [
+        0,
+        109,
+        765
+      ]
+    ]
+  },
+  "classification": {
+    "roc_auc": 0.8121,
+    "pr_auc": 0.6067,
+    "f1": 0.5265,
+    "f2": 0.6558,
+    "precision": 0.3963,
+    "recall": 0.7842,
+    "brier": 0.1261,
+    "threshold": 0.16,
+    "base_rate": 0.219,
+    "baseline_logistic_roc_auc": 0.8077,
+    "calibration": [
+      {
+        "bin": "0.0-0.1",
+        "predicted": 0.059,
+        "observed": 0.0617,
+        "count": 2384
+      },
+      {
+        "bin": "0.1-0.2",
+        "predicted": 0.1438,
+        "observed": 0.1477,
+        "count": 1517
+      },
+      {
+        "bin": "0.2-0.3",
+        "predicted": 0.2444,
+        "observed": 0.2347,
+        "count": 737
+      },
+      {
+        "bin": "0.3-0.4",
+        "predicted": 0.3441,
+        "observed": 0.3699,
+        "count": 419
+      },
+      {
+        "bin": "0.4-0.5",
+        "predicted": 0.4474,
+        "observed": 0.4597,
+        "count": 298
+      },
+      {
+        "bin": "0.5-0.6",
+        "predicted": 0.5454,
+        "observed": 0.5708,
+        "count": 212
+      },
+      {
+        "bin": "0.6-0.7",
+        "predicted": 0.6497,
+        "observed": 0.6353,
+        "count": 170
+      },
+      {
+        "bin": "0.7-0.8",
+        "predicted": 0.7472,
+        "observed": 0.76,
+        "count": 150
+      },
+      {
+        "bin": "0.8-0.9",
+        "predicted": 0.8477,
+        "observed": 0.886,
+        "count": 114
+      },
+      {
+        "bin": "0.9-1.0",
+        "predicted": 0.9244,
+        "observed": 0.9184,
+        "count": 49
+      }
+    ]
+  },
+  "prediction_interval": {
+    "nominal": 0.8,
+    "empirical_coverage": 0.7949,
+    "mean_width": 14.185
+  },
+  "fairness": {
+    "gender": {
+      "groups": [
+        {
+          "group": "F",
+          "n": 495,
+          "selection_rate": 0.398,
+          "tpr": 0.7732,
+          "fpr": 0.3065,
+          "auc": 0.7953
+        },
+        {
+          "group": "M",
+          "n": 5555,
+          "selection_rate": 0.4365,
+          "tpr": 0.785,
+          "fpr": 0.3376,
+          "auc": 0.8131
+        }
+      ],
+      "disparate_impact_ratio": 0.9118
+    },
+    "rank_group": {
+      "groups": [
+        {
+          "group": "constabulary",
+          "n": 4444,
+          "selection_rate": 0.4179,
+          "tpr": 0.7846,
+          "fpr": 0.3186,
+          "auc": 0.8215
+        },
+        {
+          "group": "gazetted_officer",
+          "n": 385,
+          "selection_rate": 0.5039,
+          "tpr": 0.734,
+          "fpr": 0.4296,
+          "auc": 0.7422
+        },
+        {
+          "group": "subordinate_officer",
+          "n": 1221,
+          "selection_rate": 0.4676,
+          "tpr": 0.7993,
+          "fpr": 0.3671,
+          "auc": 0.798
+        }
+      ],
+      "disparate_impact_ratio": 0.8293
+    },
+    "force_branch": {
+      "groups": [
+        {
+          "group": "border_guarding",
+          "n": 2156,
+          "selection_rate": 0.4805,
+          "tpr": 0.839,
+          "fpr": 0.3731,
+          "auc": 0.8164
+        },
+        {
+          "group": "disaster_response",
+          "n": 770,
+          "selection_rate": 0.4312,
+          "tpr": 0.8034,
+          "fpr": 0.3193,
+          "auc": 0.8498
+        },
+        {
+          "group": "industrial_security",
+          "n": 1100,
+          "selection_rate": 0.3927,
+          "tpr": 0.7739,
+          "fpr": 0.292,
+          "auc": 0.807
+        },
+        {
+          "group": "internal_security",
+          "n": 2024,
+          "selection_rate": 0.4061,
+          "tpr": 0.7167,
+          "fpr": 0.3248,
+          "auc": 0.7907
+        }
+      ],
+      "disparate_impact_ratio": 0.8173
+    }
+  },
+  "permutation_importance": [
+    {
+      "feature": "sleep_debt_7d",
+      "mae_increase": 6.3499,
+      "importance": 0.34038
+    },
+    {
+      "feature": "days_since_rest_day",
+      "mae_increase": 2.7862,
+      "importance": 0.14935
+    },
+    {
+      "feature": "peer_cohesion_score",
+      "mae_increase": 1.3068,
+      "importance": 0.07005
+    },
+    {
+      "feature": "consecutive_night_shifts",
+      "mae_increase": 1.2901,
+      "importance": 0.06915
+    },
+    {
+      "feature": "perceived_stress",
+      "mae_increase": 1.2733,
+      "importance": 0.06825
+    },
+    {
+      "feature": "hrv_rmssd_ms",
+      "mae_increase": 1.0665,
+      "importance": 0.05717
+    },
+    {
+      "feature": "perceived_fatigue",
+      "mae_increase": 0.7963,
+      "importance": 0.04268
+    },
+    {
+      "feature": "service_years",
+      "mae_increase": 0.6619,
+      "importance": 0.03548
+    },
+    {
+      "feature": "deployment_days_continuous",
+      "mae_increase": 0.4692,
+      "importance": 0.02515
+    },
+    {
+      "feature": "leave_denied_6m",
+      "mae_increase": 0.4645,
+      "importance": 0.0249
+    },
+    {
+      "feature": "resting_hr_delta_bpm",
+      "mae_increase": 0.45,
+      "importance": 0.02412
+    },
+    {
+      "feature": "grievance_pending",
+      "mae_increase": 0.3313,
+      "importance": 0.01776
+    },
+    {
+      "feature": "overtime_hours_7d",
+      "mae_increase": 0.2495,
+      "importance": 0.01338
+    },
+    {
+      "feature": "days_since_family_contact",
+      "mae_increase": 0.2468,
+      "importance": 0.01323
+    },
+    {
+      "feature": "hardship_posting_index",
+      "mae_increase": 0.2216,
+      "importance": 0.01188
+    },
+    {
+      "feature": "prior_welfare_contact",
+      "mae_increase": 0.2053,
+      "importance": 0.01101
+    },
+    {
+      "feature": "high_altitude_posting",
+      "mae_increase": 0.1551,
+      "importance": 0.00831
+    },
+    {
+      "feature": "physical_readiness_score",
+      "mae_increase": 0.1098,
+      "importance": 0.00589
+    },
+    {
+      "feature": "transfers_24m",
+      "mae_increase": 0.0663,
+      "importance": 0.00355
+    },
+    {
+      "feature": "sleep_variability",
+      "mae_increase": 0.0654,
+      "importance": 0.0035
+    },
+    {
+      "feature": "steps_7d_avg_k",
+      "mae_increase": 0.0611,
+      "importance": 0.00327
+    },
+    {
+      "feature": "duty_hours_7d_avg",
+      "mae_increase": 0.0228,
+      "importance": 0.00122
+    },
+    {
+      "feature": "age",
+      "mae_increase": 0.0044,
+      "importance": 0.00023
+    },
+    {
+      "feature": "distance_from_home_km",
+      "mae_increase": 0.0012,
+      "importance": 6e-05
+    },
+    {
+      "feature": "sleep_hours_7d_avg",
+      "mae_increase": -0.0013,
+      "importance": 0.0
+    }
+  ],
+  "python_inference_ms": 0.216
+}

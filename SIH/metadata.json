@@ -1,0 +1,6 @@
+{
+  "name": "SAHARA — Explainable AI Welfare Intelligence System",
+  "description": "Explainable, privacy-preserving AI welfare intelligence system that detects emerging occupational stress and fatigue risk, identifies causes via SHAP, recommends evidence-grounded interventions, and simulates counterfactuals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

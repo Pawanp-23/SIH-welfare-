@@ -1,0 +1,7 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# Anything project-specific is handled by SIH/.gitignore (node_modules, dist,
+# .data, .env*, generated ML cohort). This file only covers repo-root junk.

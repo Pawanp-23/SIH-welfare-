@@ -1,0 +1,44 @@
+{
+  "name": "sahara",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server/server.ts",
+    "build": "vite build && esbuild server/server.ts --bundle --platform=node --format=esm --packages=external --sourcemap --outfile=dist/server.js",
+    "start": "node dist/server.js --production",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist .data",
+    "ml:data": "python3 ml/generate_dataset.py",
+    "ml:train": "python3 ml/train.py",
+    "ml:verify": "tsx server/ml/verify.ts",
+    "ml:all": "npm run ml:data && npm run ml:train && npm run ml:verify",
+    "verify": "npm run lint && npm run ml:verify"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "recharts": "^3.10.1",
+    "vite": "^6.2.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  },
+  "description": "Predictive personnel stress and welfare monitoring for uniformed forces"
+}
