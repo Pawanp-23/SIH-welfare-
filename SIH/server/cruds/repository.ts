@@ -1285,6 +1285,17 @@ class SaharaRepository {
     const recs = recommend(features, detail.drivers, 4);
     const plan = combinedPlan(features, recs);
 
+    // Free-text the person chose to add on a check-in. This route is already
+    // gated to the individual themselves or their assigned officer
+    // (requireSelfOrAssignedOfficer), so surfacing it here is exactly the
+    // "visible only to your assigned welfare officer" promise the check-in
+    // screen makes — and nowhere else reads this column back out.
+    const notes = this.getCheckins(userId)
+      .filter((c) => c.notes && c.notes.trim().length > 0)
+      .slice(-5)
+      .reverse()
+      .map((c) => ({ date: c.date, text: c.notes as string }));
+
     return {
       token: pseudonymFor(userId),
       unitName: user.unitName,
@@ -1305,6 +1316,7 @@ class SaharaRepository {
         band: a.band,
         forecast: a.forecastValue,
       })),
+      notes,
     };
   }
 

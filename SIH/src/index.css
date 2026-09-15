@@ -1,13 +1,17 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   SAHARA design language — "Field Manual"
+   SAHARA design language — "Operations Console"
    --------------------------------------------------------------------------
-   The visual reference is a printed operational document, not a SaaS
-   dashboard: a warm paper ground, ink-black type, hairline rules instead of
-   drop shadows, and exactly three signal colours that mean exactly one thing
-   each. Data is set in monospace so columns of numbers line up; headlines are
-   set in a high-contrast serif so the page has a voice.
+   The visual reference is an institutional intelligence console — the class of
+   Palantir Foundry, IBM Carbon, Linear — not a consumer SaaS landing page:
+   cool neutral surfaces, precise grotesque type, hairline structure, restrained
+   elevation, and one institutional accent (a government-trust blue) held apart
+   from the three status colours so "action" never reads as "state".
+
+   Type does the heavy lifting: a technical grotesque (Archivo) for display and
+   figures, a neutral UI sans (Inter) for prose, and a monospace (IBM Plex Mono)
+   for anything tabular so columns of numbers line up to the pixel.
 
    Every colour below is a token. Nothing in a component should contain a hex
    value — if a new colour is needed, it belongs here with a name that says
@@ -17,84 +21,79 @@
 :root {
   color-scheme: light;
 
-  /* --- Ground ----------------------------------------------------------- */
-  --paper:            #EFEAE0;
-  --paper-raised:     #F8F5EF;
-  --paper-sunken:     #E5DED0;
-  --paper-inset:      #EAE4D8;
+  /* --- Ground: cool, near-white, crisp cards on a slightly darker field - */
+  --paper:            #EDEFF2;
+  --paper-raised:     #FFFFFF;
+  --paper-sunken:     #E4E7EC;
+  --paper-inset:      #F5F6F8;
 
-  /* --- Ink -------------------------------------------------------------- */
-  --ink:              #1A1C19;
-  --ink-strong:       #000000;
-  --ink-muted:        #6A6658;
-  --ink-faint:        #9B9583;
+  /* --- Ink: cool slate, not warm black ---------------------------------- */
+  --ink:              #1C2530;
+  --ink-strong:       #0B0F14;
+  --ink-muted:        #5A6472;
+  --ink-faint:        #8B95A3;
 
   /* --- Structure -------------------------------------------------------- */
-  --rule:             #DCD5C4;
-  --rule-strong:      #C2B9A3;
-  --rule-hairline:    #E6E0D2;
+  --rule:             #DCE0E6;
+  --rule-strong:      #C3C9D2;
+  --rule-hairline:    #E8EBEF;
 
-  /* --- Signals: one meaning each, never decorative ---------------------- */
-  --signal-routine:   #2F6F4E;
-  --signal-routine-bg:#E2EDE4;
-  --signal-watch:     #9C6E14;
-  --signal-watch-bg:  #F2E9D2;
-  --signal-review:    #A63A2E;
-  --signal-review-bg: #F4E0DA;
+  /* --- Signals: one meaning each, never decorative --------------------- */
+  --signal-routine:   #1F7A55;
+  --signal-routine-bg:#E4F1EA;
+  --signal-watch:     #A66A00;
+  --signal-watch-bg:  #F7ECD5;
+  --signal-review:    #C33B32;
+  --signal-review-bg: #F8E3E0;
 
-  /* --- Action ----------------------------------------------------------- */
-  --accent:           #1C5B4C;
-  --accent-hover:     #164A3E;
-  --accent-soft:      #DEEBE5;
-  --accent-ink:       #FBF9F5;
+  /* --- Action: institutional blue, distinct from every status colour ---- */
+  --accent:           #2B59C3;
+  --accent-hover:     #2249A3;
+  --accent-soft:      #E4EAF9;
+  --accent-ink:       #FFFFFF;
 
   /* --- Data visualisation ---------------------------------------------- */
   /* Categorical series. Fixed order, never cycled — an entity keeps its hue
-     when a filter changes the series count. Validated against the
-     #F8F5EF chart surface: lightness band, chroma floor, adjacent-pair CVD
-     separation (worst ΔE 9.6 protan), normal-vision floor and 3:1 contrast
-     all pass. Do not nudge these by eye; re-run the validator. */
-  --viz-1: #00866C;
-  --viz-2: #B8790A;
-  --viz-3: #2F63C7;
-  --viz-4: #C13A28;
-  --viz-5: #8E3FA0;
-  --viz-grid: #DCD5C4;
-  --viz-axis: #9B9583;
-  /* The forecast series is deliberately the blue slot, never a lighter tint of
-     the actuals — a tint reads as "the same thing, less certain" when it is in
-     fact a different quantity. */
-  --viz-forecast: #2F63C7;
+     when a filter changes the series count. Chosen for a white chart surface
+     with CVD-safe adjacent separation. The index series is teal-green; the
+     forecast is the blue slot, never a lighter tint of the actuals. */
+  --viz-1: #0E7C63;
+  --viz-2: #B4780A;
+  --viz-3: #2B59C3;
+  --viz-4: #C33B32;
+  --viz-5: #7A46B5;
+  --viz-grid: #E2E5EA;
+  --viz-axis: #8B95A3;
+  --viz-forecast: #2B59C3;
 
-  /* --- Elevation: warm, shallow, and used sparingly --------------------- */
-  --elev-1: 0 1px 2px rgba(38, 31, 18, 0.05);
-  --elev-2: 0 2px 6px rgba(38, 31, 18, 0.07), 0 1px 2px rgba(38, 31, 18, 0.05);
-  --elev-3: 0 10px 32px -8px rgba(38, 31, 18, 0.18), 0 2px 6px rgba(38, 31, 18, 0.06);
-  --elev-inset: inset 0 1px 2px rgba(38, 31, 18, 0.06);
-  /* A card that sits *on* the page rather than being drawn on it: a hairline
-     of light along the top edge, a tight contact shadow, and a soft ambient
-     one further out. Depth, without the plastic look of neumorphism. */
+  /* --- Elevation: cool, crisp, flat. Hairlines carry the structure. ----- */
+  --elev-1: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --elev-2: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+  --elev-3: 0 12px 32px -12px rgba(16, 24, 40, 0.18), 0 2px 6px rgba(16, 24, 40, 0.06);
+  --elev-inset: inset 0 1px 2px rgba(16, 24, 40, 0.05);
+  /* Surface cards sit on the page with a crisp contact shadow — no white
+     sheen, no neumorphic bevel. */
   --elev-surface:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    0 1px 1.5px rgba(38, 31, 18, 0.06),
-    0 8px 22px -14px rgba(38, 31, 18, 0.22);
+    0 1px 2px rgba(16, 24, 40, 0.04),
+    0 1px 3px rgba(16, 24, 40, 0.06);
   --elev-surface-hover:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    0 2px 4px rgba(38, 31, 18, 0.06),
-    0 16px 34px -16px rgba(38, 31, 18, 0.28);
-  --surface-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 38%);
+    0 2px 4px rgba(16, 24, 40, 0.06),
+    0 10px 28px -12px rgba(16, 24, 40, 0.16);
+  --surface-sheen: none;
 
-  /* --- Radii: small. A document has corners, not pills. ----------------- */
+  /* --- Radii: small and consistent. A console has corners, not pills. --- */
   --r-xs: 2px;
   --r-sm: 4px;
-  --r-md: 7px;
-  --r-lg: 12px;
-  --r-xl: 18px;
+  --r-md: 6px;
+  --r-lg: 10px;
+  --r-xl: 16px;
 
   /* --- Type ------------------------------------------------------------- */
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: "Instrument Serif", "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Named --font-serif for historical reasons; it is the display grotesque used
+     for headings and large figures. Repoint here to re-skin every heading. */
+  --font-serif: "Archivo", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* --- Motion ----------------------------------------------------------- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -108,56 +107,54 @@
 .dark {
   color-scheme: dark;
 
-  --paper:            #13151A;
-  --paper-raised:     #1A1D23;
-  --paper-sunken:     #0E1014;
-  --paper-inset:      #171A20;
+  /* Deep institutional slate with a faint blue bias, not a neutral charcoal. */
+  --paper:            #0C0F14;
+  --paper-raised:     #141922;
+  --paper-sunken:     #090B0F;
+  --paper-inset:      #10141B;
 
-  --ink:              #E9E5DB;
+  --ink:              #E6EAF0;
   --ink-strong:       #FFFFFF;
-  --ink-muted:        #98948A;
-  --ink-faint:        #6B6860;
+  --ink-muted:        #97A1B0;
+  --ink-faint:        #626C7A;
 
-  --rule:             #282C33;
-  --rule-strong:      #3A3F47;
-  --rule-hairline:    #21252B;
+  --rule:             #232A34;
+  --rule-strong:      #333C48;
+  --rule-hairline:    #1B212A;
 
-  --signal-routine:   #58AE84;
-  --signal-routine-bg:#16281F;
-  --signal-watch:     #D6A952;
-  --signal-watch-bg:  #2B2315;
-  --signal-review:    #DE7566;
-  --signal-review-bg: #2F1B18;
+  --signal-routine:   #4FB98A;
+  --signal-routine-bg:#12271E;
+  --signal-watch:     #E0B255;
+  --signal-watch-bg:  #2A2110;
+  --signal-review:    #E06B5E;
+  --signal-review-bg: #2C1613;
 
-  --accent:           #57BCA0;
-  --accent-hover:     #6FCCB2;
-  --accent-soft:      #17302A;
-  --accent-ink:       #0C1512;
+  --accent:           #5B8DEF;
+  --accent-hover:     #74A0F5;
+  --accent-soft:      #16233D;
+  --accent-ink:       #0A1120;
 
-  /* Dark steps are chosen from the same ramps and re-validated against the
-     #1A1D23 surface — not an automatic lightening of the light values. */
-  --viz-1: #1E9B81;
-  --viz-2: #B8841F;
-  --viz-3: #5B86CC;
-  --viz-4: #C85B47;
-  --viz-5: #A46BBA;
-  --viz-grid: #282C33;
-  --viz-axis: #6B6860;
-  --viz-forecast: #5B86CC;
+  /* Dark steps re-tuned against the #141922 surface — not a lightening. */
+  --viz-1: #17A382;
+  --viz-2: #D2A03A;
+  --viz-3: #5B8DEF;
+  --viz-4: #E06B5E;
+  --viz-5: #A175D6;
+  --viz-grid: #232A34;
+  --viz-axis: #626C7A;
+  --viz-forecast: #5B8DEF;
 
-  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --elev-2: 0 2px 8px rgba(0, 0, 0, 0.45);
-  --elev-3: 0 14px 40px -10px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.4);
-  --elev-inset: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --elev-2: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --elev-3: 0 16px 40px -12px rgba(0, 0, 0, 0.72), 0 2px 8px rgba(0, 0, 0, 0.5);
+  --elev-inset: inset 0 1px 2px rgba(0, 0, 0, 0.4);
   --elev-surface:
-    inset 0 1px 0 rgba(255, 255, 255, 0.055),
-    0 1px 1.5px rgba(0, 0, 0, 0.45),
-    0 10px 26px -14px rgba(0, 0, 0, 0.75);
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 1px 3px rgba(0, 0, 0, 0.4);
   --elev-surface-hover:
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 2px 4px rgba(0, 0, 0, 0.45),
-    0 18px 40px -16px rgba(0, 0, 0, 0.85);
-  --surface-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 40%);
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 12px 30px -14px rgba(0, 0, 0, 0.8);
+  --surface-sheen: none;
 }
 
 /* Expose the tokens to Tailwind's utility generator. */
@@ -232,12 +229,15 @@
     font-feature-settings: "cv05" 1, "ss01" 1;
   }
 
+  /* Archivo is a grotesque, not a serif: it needs weight and tight tracking to
+     read as a display face rather than generic body copy. */
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
-    font-weight: 400;
-    letter-spacing: -0.015em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     color: var(--ink-strong);
   }
+  h1 { letter-spacing: -0.03em; }
 
   /* Tabular figures everywhere a number might change, so the layout does not
      jitter when a value ticks from 9 to 10. */
@@ -337,7 +337,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.4;
+    opacity: 0.12;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
   }
 }

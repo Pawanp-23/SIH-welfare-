@@ -117,6 +117,7 @@ export interface Dossier {
     projected: Array<{ day: string; baseline: number; simulated: number }>;
   } | null;
   history: Array<{ date: string; index: number; band: string; forecast?: number }>;
+  notes: Array<{ date: string; text: string }>;
 }
 
 class SaharaApiClient {

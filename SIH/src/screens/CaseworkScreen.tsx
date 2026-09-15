@@ -163,7 +163,7 @@ function CaseDetail({ kase, onChanged }: { kase: WelfareCase; onChanged: () => v
   const [note, setNote] = useState('');
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const [tab, setTab] = useState<'why' | 'plan' | 'timeline'>('why');
+  const [tab, setTab] = useState<'why' | 'plan' | 'notes' | 'timeline'>('why');
 
   const act = async (status: CaseStatus) => {
     if (note.trim().length < 3) {
@@ -233,6 +233,7 @@ function CaseDetail({ kase, onChanged }: { kase: WelfareCase; onChanged: () => v
               items={[
                 { id: 'why' as const, label: 'Why flagged' },
                 { id: 'plan' as const, label: 'What to do', count: d?.recommendations.length },
+                { id: 'notes' as const, label: 'Their notes', count: d?.notes.length },
                 { id: 'timeline' as const, label: 'Timeline', count: kase.events.length },
               ]}
               value={tab}
@@ -311,6 +312,29 @@ function CaseDetail({ kase, onChanged }: { kase: WelfareCase; onChanged: () => v
                         </div>
                       ) : null}
                     </div>
+                  ) : (
+                    <Skeleton className="h-40" />
+                  )
+                ) : null}
+
+                {tab === 'notes' ? (
+                  d ? (
+                    d.notes.length === 0 ? (
+                      <p className="text-[12.5px] text-ink-muted">
+                        Nothing added. This field is optional — most check-ins don't include it.
+                      </p>
+                    ) : (
+                      <ul className="space-y-2.5">
+                        {d.notes.map((n) => (
+                          <li key={n.date} className="rounded-sm border border-rule bg-paper-inset p-3.5">
+                            <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-faint">
+                              {n.date}
+                            </div>
+                            <p className="mt-1 text-[12.5px] leading-relaxed text-ink">{n.text}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    )
                   ) : (
                     <Skeleton className="h-40" />
                   )
